@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CareerCompass.DataContext", "src\CareerCompass.DataContext\CareerCompass.DataContext.csproj", "{1E8AB5DA-37AB-4E0D-8566-9BB5807BF9FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6A8A69E5-DC49-4D6B-934E-D0EA81120AC9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CareerCompass.Api", "src\CareerCompass.Api\CareerCompass.Api.csproj", "{51A3E797-53F5-48DE-ABDC-09472E467ECC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{16954A4F-E216-4EA0-8584-95A831746CE9}"
+	ProjectSection(SolutionItems) = preProject
+		.env = .env
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CareerCompass.Services", "src\CareerCompass.Services\CareerCompass.Services.csproj", "{04B8E78F-D788-48FD-A093-7DA01478B968}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E8AB5DA-37AB-4E0D-8566-9BB5807BF9FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E8AB5DA-37AB-4E0D-8566-9BB5807BF9FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E8AB5DA-37AB-4E0D-8566-9BB5807BF9FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E8AB5DA-37AB-4E0D-8566-9BB5807BF9FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51A3E797-53F5-48DE-ABDC-09472E467ECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A3E797-53F5-48DE-ABDC-09472E467ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A3E797-53F5-48DE-ABDC-09472E467ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A3E797-53F5-48DE-ABDC-09472E467ECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04B8E78F-D788-48FD-A093-7DA01478B968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04B8E78F-D788-48FD-A093-7DA01478B968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04B8E78F-D788-48FD-A093-7DA01478B968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04B8E78F-D788-48FD-A093-7DA01478B968}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1E8AB5DA-37AB-4E0D-8566-9BB5807BF9FB} = {6A8A69E5-DC49-4D6B-934E-D0EA81120AC9}
+		{51A3E797-53F5-48DE-ABDC-09472E467ECC} = {6A8A69E5-DC49-4D6B-934E-D0EA81120AC9}
+		{04B8E78F-D788-48FD-A093-7DA01478B968} = {6A8A69E5-DC49-4D6B-934E-D0EA81120AC9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {256BAFD2-8A6E-42A1-AB36-A008F9A67CB7}
+	EndGlobalSection
+EndGlobal
