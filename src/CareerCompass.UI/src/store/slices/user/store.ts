@@ -48,7 +48,6 @@ export const init =
     }
     catch {
       await dispatch(setInitialized(true));
-      navigate('/login');
     }
   };
 
