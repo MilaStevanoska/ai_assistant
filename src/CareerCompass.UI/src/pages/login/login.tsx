@@ -22,24 +22,23 @@ const Login = (props: LoginProps) => {
 
   return (
     <div>
-      This is the login page
-      <div>
-        Email Address <br />
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      <div className="w-full bg-linear-127 from-[#00A7B3] to-[#002847] relative">
+        <Header pageName="login" />
+
+        <div className="h-[960px] object-cover">
+          <img src="/src/assets/humanFace.png" />
+        </div>
+        <div className="absolute top-1/2 left-3/4 -translate-x-1/2 -translate-y-1/2 z-10">
+          <AuthForm
+            pageName="login"
+            email={email}
+            password={password}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            onSubmit={onSubmit}
+          />
+        </div>
       </div>
-      <div>
-        Password <br />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button onClick={onSubmit}>Sign In</button>
     </div>
   );
 };

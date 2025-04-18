@@ -25,14 +25,14 @@ export const Header = ({ pageName }: { pageName: string }) => {
         ) : pageName == "login" ? (
           <div className="inria-sans-regular text-md">
             <button className="px-7 py-2 underline">Sign In </button>
-            <button className="ml-4 px-5 py-1  bg-[#D9D9D9] text-black rounded-3xl">
+            <button onClick={goToRegister} className="ml-4 px-5 py-1  bg-[#D9D9D9] text-black rounded-3xl">
               Register
             </button>
           </div>
         ) : (
           <div className="inria-sans-regular text-md">
             <button className="px-7 py-2 underline">Sign Up</button>
-            <button className="ml-4 px-5 py-1  bg-[#D9D9D9] text-black rounded-3xl">
+            <button onClick={goToLogin} className="ml-4 px-5 py-1  bg-[#D9D9D9] text-black rounded-3xl">
               Login
             </button>
           </div>
