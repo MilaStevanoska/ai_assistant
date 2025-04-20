@@ -17,6 +17,11 @@ namespace CareerCompass.Services.Services
             await context.SaveChangesAsync(cancellationToken);
         }
 
+        public void Update(object entity)
+        {
+            context.Update(entity);
+        }
+
         public IDbContextTransaction BeginTransaction() => context.Database.BeginTransaction();
     }
 }

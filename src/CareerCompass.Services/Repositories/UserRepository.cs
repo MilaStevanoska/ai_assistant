@@ -15,13 +15,17 @@ namespace CareerCompass.Services.Repositories
             this.dbContext = dbContext;
         }
 
-        public Task<User?> GetByEmail(string email)
-            => dbContext.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
+        public Task<User?> GetByEmail(string email, CancellationToken token = default)
+            => dbContext.Users
+                .Include(x => x.SchoolYears)
+                .FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower(), token);
 
-        public Task<User?> GetById(int userId)
-            => dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        public Task<User?> GetById(int userId, CancellationToken token = default)
+            => dbContext.Users
+                .Include(x => x.SchoolYears)
+                .FirstOrDefaultAsync(u => u.Id == userId, token);
 
-        public async Task InsertAsync(User user)
-            => await dbContext.Users.AddAsync(user);
+        public async Task InsertAsync(User user, CancellationToken token = default)
+            => await dbContext.Users.AddAsync(user, token);
     }
 }

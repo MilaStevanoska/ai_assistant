@@ -8,6 +8,7 @@ namespace CareerCompass.Api.Infrastructure.Startup
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IMasterDataService, MasterDataService>();
             return services;
         }
     }

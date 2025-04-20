@@ -1,14 +1,10 @@
 ﻿using CareerCompass.DataContext.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CareerCompass.DataContext.Entities
 {
     public class User
     {
-        private ICollection<Skills> skills = [];
-        private ICollection<AreaOfInterest> areasOfInterest = [];
-
         public User() { }
 
         public User(string firstName, string lastName, string email)
@@ -35,9 +31,9 @@ namespace CareerCompass.DataContext.Entities
 
         public CareerGoal Goal { get; set; }
 
-        public virtual IEnumerable<Skills> Skills { get => skills; }
+        public virtual List<Skills> Skills { get; private set; } = new List<Skills>();
 
-        public virtual IEnumerable<AreaOfInterest> AreasOfInterest { get => areasOfInterest; }
+        public virtual List<AreaOfInterest> AreasOfInterest { get; private set; } = new List<AreaOfInterest>();
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public virtual IEnumerable<SchoolYear> SchoolYears { get; private set; }
@@ -45,28 +41,48 @@ namespace CareerCompass.DataContext.Entities
 
         public void AddSkill(Skills skill)
         {
-            if (!skills.Contains(skill))
+            if (!Skills.Contains(skill))
             {
-                skills.Add(skill);
+                Skills.Add(skill);
             }
         }
 
         public void RemoveSkill(Skills skill)
         {
-            skills.Remove(skill);
+            Skills.Remove(skill);
         }
 
         public void AddAreaOfInterest(AreaOfInterest area)
         {
-            if (!areasOfInterest.Contains(area))
+            if (!AreasOfInterest.Contains(area))
             {
-                areasOfInterest.Add(area);
+                AreasOfInterest.Add(area);
             }
         }
 
         public void RemoveAreaOfInterest(AreaOfInterest area)
         {
-            areasOfInterest.Remove(area);
+            AreasOfInterest.Remove(area);
+        }
+
+        public void AddSchoolYear(SchoolYear schoolYear)
+        {
+            if (SchoolYears.Any(x => x.Year == schoolYear.Year))
+            {
+                return;
+            }
+
+            ((ICollection<SchoolYear>)SchoolYears).Add(schoolYear);
+        }
+
+        public void RemoveSchoolYear(SchoolYear schoolYear)
+        {
+            if (!SchoolYears.Contains(schoolYear))
+            {
+                return;
+            }
+
+            ((ICollection<SchoolYear>)SchoolYears).Remove(schoolYear);
         }
     }
 }
