@@ -10,6 +10,6 @@ namespace CareerCompass.Services.Abstractions.Services
 {
     public interface IMasterDataService
     {
-        public Task UpdateMasterData(MasterData model, IRolePrincipal principal, CancellationToken token = default);
+        Task<MasterData?> GetMasterData(IRolePrincipal principal, CancellationToken token = default);
     }
 }
