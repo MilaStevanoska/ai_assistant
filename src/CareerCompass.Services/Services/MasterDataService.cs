@@ -55,6 +55,7 @@ namespace CareerCompass.Services.Services
             user.FromUpdateModel(model);
             
             Update(user);
+
             await SaveChangesAsync();
         }
     }

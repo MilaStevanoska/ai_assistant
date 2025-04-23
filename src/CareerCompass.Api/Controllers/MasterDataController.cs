@@ -45,21 +45,16 @@ namespace CareerCompass.Api.Controllers
         public async Task<IActionResult> Save([FromBody] MasterData model, CancellationToken cancellationToken)
         {
             var principal = new ClaimsPrincipalWrapper(User);
+
             var validationResult = masterDataValidator.Validate(model);
 
             if (!masterDataValidator.Validate(model).IsValid)
             {
                 return BadRequest(validationResult.Errors);
             }
-            try
-            {
-                await masterDataService.UpdateMasterData(model, principal);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error updating: {ex}");
-                throw;
-            }
+        
+            await masterDataService.UpdateMasterData(model, principal);
+   
             return Ok();
         }
 
