@@ -9,5 +9,6 @@ namespace CareerCompass.Services.Abstractions.Repositories
         Task<User?> GetByEmail(string email, CancellationToken token = default);
 
         Task InsertAsync(User user, CancellationToken token = default);
+
     }
 }

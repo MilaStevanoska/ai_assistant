@@ -27,5 +27,6 @@ namespace CareerCompass.Services.Repositories
 
         public async Task InsertAsync(User user, CancellationToken token = default)
             => await dbContext.Users.AddAsync(user, token);
+
     }
 }

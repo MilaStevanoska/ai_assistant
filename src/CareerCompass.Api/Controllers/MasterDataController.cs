@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace CareerCompass.Api.Controllers
 {
     [Authorize]
-    [Route("api/v1/masterdata")]
     [ApiController]
     [Route("api/v1/master-data")]
     public class MasterDataController : ControllerBase
@@ -21,7 +20,7 @@ namespace CareerCompass.Api.Controllers
         private readonly IValidator<MasterData> masterDataValidator;
         private readonly IMasterDataService masterDataService;
 
-        public MasterDataController(IMasterDataService masterDataService)
+        public MasterDataController(IMasterDataService masterDataService, IValidator<MasterData> masterDataValidator)
         {
             this.masterDataValidator = masterDataValidator;
             this.masterDataService = masterDataService;
@@ -40,6 +39,28 @@ namespace CareerCompass.Api.Controllers
             }
 
             return Ok(model);
+        }
+
+        [HttpPost("save")]
+        public async Task<IActionResult> Save([FromBody] MasterData model, CancellationToken cancellationToken)
+        {
+            var principal = new ClaimsPrincipalWrapper(User);
+            var validationResult = masterDataValidator.Validate(model);
+
+            if (!masterDataValidator.Validate(model).IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+            try
+            {
+                await masterDataService.UpdateMasterData(model, principal);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating: {ex}");
+                throw;
+            }
+            return Ok();
         }
 
         [HttpGet, Route("skills-options")]
