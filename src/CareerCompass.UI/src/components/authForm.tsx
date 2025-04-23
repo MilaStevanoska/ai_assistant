@@ -1,19 +1,25 @@
 import { useNavigate } from "react-router";
 import { AuthFormProps } from "./authForm.props";
 
-  const AuthForm = ({
-    pageName,
-    email,
-    password,
-    setEmail,
-    setPassword,
-    onSubmit,
-  }: AuthFormProps) => {
-
-    const navigate = useNavigate();
+const AuthForm = ({
+  pageName,
+  email,
+  password,
+  firstName,
+  lastName,
+  setEmail,
+  setPassword,
+  setFirstName,
+  setLastName,
+  onSubmit,
+}: AuthFormProps) => {
+  const navigate = useNavigate();
 
   const goToRegister = () => {
     navigate("/register");
+  };
+  const goToLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -62,34 +68,47 @@ import { AuthFormProps } from "./authForm.props";
           <div className="inter-bold text-3xl pt-7">Register</div>
           <label className="inter-regular pb-2 pt-7">Name</label>
           <input
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             type="text"
             placeholder="Your name"
             className="inter-regular w-[375px] p-2 px-5 bg-white text-[#A2A2A2] rounded-xl"
           />
           <label className="inter-regular pb-2 pt-7">Surname</label>
           <input
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
             type="text"
             placeholder="Your surname"
             className="inter-regular w-[375px] p-2 px-5 bg-white text-[#A2A2A2] rounded-xl"
           />
           <label className="inter-regular pb-2 pt-7">Email</label>
           <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             type="text"
             placeholder="email@gmail.com"
             className="inter-regular w-[375px] p-2 px-5 bg-white text-[#A2A2A2] rounded-xl"
           />
           <label className="inter-regular pb-2 pt-7">Password</label>
           <input
-            type="text"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="password"
             className="inter-regular w-[375px] p-2 px-5 bg-white text-[#A2A2A2] rounded-xl"
           />
-          <button className="bg-[#003F6F] inter-bold text-xl p-3 rounded-xl mt-7">
+          <button
+            onClick={onSubmit}
+            className="bg-[#003F6F] inter-bold text-xl p-3 rounded-xl mt-7"
+          >
             Sign up
           </button>
           <div className="inter-regular pt-7 text-left">
             Already have an account?{" "}
-            <button className="pl-3 inter-bold underline">Login</button>
+            <button onClick={goToLogin} className="pl-3 inter-bold underline">
+              Login
+            </button>
           </div>
         </div>
       )}

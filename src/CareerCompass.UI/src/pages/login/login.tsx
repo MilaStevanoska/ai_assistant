@@ -21,7 +21,6 @@ const Login = (props: LoginProps) => {
   };
 
   return (
-    <div>
       <div className="w-full bg-linear-127 from-[#00A7B3] to-[#002847] relative">
         <Header pageName="login" />
 
@@ -39,7 +38,6 @@ const Login = (props: LoginProps) => {
           />
         </div>
       </div>
-    </div>
   );
 };
 
