@@ -17,10 +17,12 @@ namespace CareerCompass.Api.Controllers
     [Route("api/v1/master-data")]
     public class MasterDataController : ControllerBase
     {
+        private readonly IValidator<MasterData> masterDataValidator;
         private readonly IMasterDataService masterDataService;
 
-        public MasterDataController(IMasterDataService masterDataService)
+        public MasterDataController(IMasterDataService masterDataService, IValidator<MasterData> masterDataValidator)
         {
+            this.masterDataValidator = masterDataValidator;
             this.masterDataService = masterDataService;
         }
 
@@ -37,6 +39,21 @@ namespace CareerCompass.Api.Controllers
             }
 
             return Ok(model);
+        }
+
+        [HttpPost("save")]
+        public async Task<IActionResult> Save([FromBody] MasterData model, CancellationToken cancellationToken)
+        {
+            var principal = new ClaimsPrincipalWrapper(User);
+
+            if (!masterDataValidator.Validate(model).IsValid)
+            {
+                return BadRequest();
+            }
+        
+            await masterDataService.UpdateMasterData(model, principal);
+   
+            return Ok();
         }
 
         [HttpGet, Route("skills-options")]
