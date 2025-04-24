@@ -46,11 +46,9 @@ namespace CareerCompass.Api.Controllers
         {
             var principal = new ClaimsPrincipalWrapper(User);
 
-            var validationResult = masterDataValidator.Validate(model);
-
             if (!masterDataValidator.Validate(model).IsValid)
             {
-                return BadRequest(validationResult.Errors);
+                return BadRequest();
             }
         
             await masterDataService.UpdateMasterData(model, principal);

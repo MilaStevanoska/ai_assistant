@@ -23,21 +23,6 @@ namespace CareerCompass.Services.Models.User
             return model;
         }
 
-        static void ApplyGradesToSchoolYear(Entity.SchoolYear entityYear, SchoolYear modelYear)
-        {
-            foreach (var subject in modelYear.Subjects)
-            {
-                if (modelYear.Grades.TryGetValue(subject.Name, out var grade))
-                {
-                    var property = entityYear.Grades.GetType().GetProperty(subject.Name);
-                    if (property == null)
-                        continue;
-
-                    property.SetValue(entityYear.Grades, (short)grade);
-                }
-            }
-        }
-
         public static Entity.User FromUpdateModel(this Entity.User entity, MasterData model)
         {
             entity.FirstName = model.FirstName;
@@ -93,7 +78,9 @@ namespace CareerCompass.Services.Models.User
             {
                 var modelYear = model.SchoolYears.FirstOrDefault(x => x.Year == existingYear.Year);
                 if (modelYear == null)
+                {
                     continue;
+                }
 
                 ApplyGradesToSchoolYear(existingYear, modelYear);
             }
@@ -150,6 +137,24 @@ namespace CareerCompass.Services.Models.User
             }
 
             return model;
+        }
+
+        static void ApplyGradesToSchoolYear(Entity.SchoolYear entityYear, SchoolYear modelYear)
+        {
+            foreach (var subject in modelYear.Subjects)
+            {
+                if (modelYear.Grades.TryGetValue(subject.Name, out var grade))
+                {
+                    var property = entityYear.Grades.GetType().GetProperty(subject.Name);
+
+                    if (property == null)
+                    {
+                        continue;
+                    }
+
+                    property.SetValue(entityYear.Grades, (short)grade);
+                }
+            }
         }
     }
 }

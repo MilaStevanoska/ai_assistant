@@ -53,25 +53,40 @@ namespace CareerCompass.Services.Validation
 
         private bool HaveNoDuplicateSubjects(List<SchoolYear> schoolYears)
         {
-            if (schoolYears == null) return true;
+            if (schoolYears == null)
+            {
+                return true;
+            }
 
             foreach (var year in schoolYears)
             {
                 var subjects = year?.Subjects;
-                if (subjects == null) continue;
+
+                if (subjects == null)
+                {
+                    continue;
+                }
 
                 var subjectNames = subjects.Select(s => s.Name);
+
                 if (subjectNames.Distinct().Count() != subjectNames.Count())
+                {
                     return false;
+                }
+                    
             }
             return true;
         }
 
         private bool HaveNoDuplicateYears(List<SchoolYear> schoolYears)
         {
-            if (schoolYears == null) return true;
+            if (schoolYears == null)
+            {
+                return true;
+            }
 
             var yearNumbers = schoolYears.Select(y => y.Year);
+
             return yearNumbers.Distinct().Count() == yearNumbers.Count();
         }
     }
