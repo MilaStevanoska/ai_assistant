@@ -43,11 +43,10 @@ export const init =
 
       await dispatch(setUser({ ...userInfo.data, isAuthenticated: true }));
       dispatch(setInitialized(true));
-
-      navigate('/dashboard');
     }
     catch {
       await dispatch(setInitialized(true));
+      navigate('/login');
     }
   };
 
