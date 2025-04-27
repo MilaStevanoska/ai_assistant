@@ -2,8 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState, MasterDataStore } from "./state";
 import { AsyncAppThunk } from "../../app-thunk";
 import { MasterData } from "../../../models/master-data";
-import { getAreasOfInterestOptions, getCareerGoalOptions, getMasterData, getSkillsOptions, getSubjectOptions} from "../../../services/master-data";
+import { getAreasOfInterestOptions, getCareerGoalOptions, getMasterData, getSkillsOptions, getSubjectOptions, updateMasterData} from "../../../services/master-data";
 import { IOption } from "../../../models/user";
+import { NavigateFunction } from "react-router";
 
 const slice = createSlice({
   name: "masterData",
@@ -105,4 +106,21 @@ export const init =
       await dispatch(setSubjectOptions(subjectOptions.data));
       await dispatch(setCareerGoalOptions(careerGoalOptions.data));
     } catch { }
+  };
+  
+  export const saveData =
+  (model: MasterData, navigate: NavigateFunction, create?: boolean): AsyncAppThunk =>
+  async (dispatch, store) => {
+    try {
+      const res = await updateMasterData(model);
+
+      if (res.status !== 200) {
+        return;
+      }
+
+      await dispatch(setMasterData(model));
+
+      navigate(create ? '/dashboard' : '/profile');
+    }
+    catch { }
   };

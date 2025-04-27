@@ -18,7 +18,10 @@ async function getSubjectOptions(): Promise<DataServiceResponse<IOption<number>[
   return http.get("/subject-options");
 }
 async function getCareerGoalOptions(): Promise<DataServiceResponse<IOption<number>[]>> {
-    return http.get('/career-goal-options');
-  }
+  return http.get('/career-goal-options');
+}
+async function updateMasterData(model: MasterData): Promise<DataServiceResponse> {
+  return http.post('/save', model);
+}
 
-export { getMasterData, getSkillsOptions, getAreasOfInterestOptions, getSubjectOptions, getCareerGoalOptions };
+export { getMasterData, getSkillsOptions, getAreasOfInterestOptions, getSubjectOptions, getCareerGoalOptions, updateMasterData };
