@@ -9,16 +9,46 @@ import { LoginModel } from "../../models/auth";
 import { Header } from "../../components/header";
 import AuthForm from "../../components/authForm";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+
 const Login = (props: LoginProps) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [validationErrors, setValidationErrors] = useState({
+    email: "",
+    password: ""
+  });
 
-  const onSubmit = () => {
-    // TODO: Add validation
-    props.authenticateUser({ email, password }, navigate);
-  };
+  function onSubmit() {
+    let errors = { email: "", password: "" };
+    let isValid = true;
+  
+    if (!email) {
+      errors.email = "Email is required.";
+      isValid = false;
+    } else if (!emailRegex.test(email)) {
+      errors.email = "A valid email address is required.";
+      isValid = false;
+    }
+  
+    if (!password) {
+      errors.password = "Password is required.";
+      isValid = false;
+    } else if (!passwordRegex.test(password)) {
+      errors.password = "A valid strong password is required.";
+      isValid = false;
+    }
+  
+    setValidationErrors(errors);
+  
+    if(isValid) {
+      props.authenticateUser({ email, password }, navigate);
+    }
+  }
+  
 
   return (
       <div className="w-full bg-linear-127 from-[#00A7B3] to-[#002847] relative">
@@ -36,6 +66,12 @@ const Login = (props: LoginProps) => {
             setPassword={setPassword}
             onSubmit={onSubmit}
           />
+          {validationErrors.email && (
+        <div className="text-red-500">{validationErrors.email}</div>
+      )}
+      {validationErrors.password && (
+        <div className="text-red-500">{validationErrors.password}</div>
+      )}
         </div>
       </div>
   );
