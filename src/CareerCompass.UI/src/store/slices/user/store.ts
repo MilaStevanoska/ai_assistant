@@ -7,6 +7,7 @@ import { NavigateFunction } from "react-router";
 import { getUserInfo } from "../../../services/user";
 import { register, signIn, signOut } from "../../../services/auth";
 import { setInitialized } from "../app";
+import { init as masterDataInit, resetMasterData } from '../master-data/index';
 
 const slice = createSlice({
     name: 'user',
@@ -42,6 +43,8 @@ export const init =
       const userInfo = await getUserInfo();
 
       await dispatch(setUser({ ...userInfo.data, isAuthenticated: true }));
+      await dispatch(masterDataInit());
+
       dispatch(setInitialized(true));
     }
     catch {
@@ -91,5 +94,6 @@ export const signOutUser =
 
     if (response.status == 200) {
       dispatch(resetUser());
+      dispatch(resetMasterData());
     }
   };

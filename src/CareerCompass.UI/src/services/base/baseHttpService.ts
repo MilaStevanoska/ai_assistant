@@ -24,3 +24,4 @@ const defaultConfiguration = {
 
 export const authHttpService = new HttpService({ baseUrl: 'https://localhost:7172/api/v1/auth', ...defaultConfiguration });
 export const userHttpService = new HttpService({ baseUrl: 'https://localhost:7172/api/v1/user', ...defaultConfiguration });
+export const masterDataHttpService = new HttpService({ baseUrl: 'https://localhost:7172/api/v1/master-data', ...defaultConfiguration });
