@@ -1,7 +1,7 @@
 import { LoginModel, RegisterModel } from "../models/auth";
 import { DataServiceResponse } from "../models/http";
 import { UserModel } from "../models/user";
-import { authHttpService as http } from "./base/BaseHttpService";
+import { authHttpService as http } from "./base/baseHttpService";
 
 http.setHeaderValue("Access-Control-Allow-Origin", "https://localhost:7172");
 
