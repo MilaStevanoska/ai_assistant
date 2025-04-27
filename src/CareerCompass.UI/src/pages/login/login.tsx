@@ -45,6 +45,7 @@ const Login = (props: LoginProps) => {
     setValidationErrors(errors);
   
     if(isValid) {
+      setValidationErrors({ email: "", password: "" });
       props.authenticateUser({ email, password }, navigate);
     }
   }
