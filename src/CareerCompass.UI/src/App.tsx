@@ -11,6 +11,7 @@ import Login from "./pages/login/login";
 import { useEffect } from "react";
 import Welcome from "./pages/welcome/welcome";
 import Register from "./pages/register/register";
+import ProfilePage from "./pages/profile_page/ProfilePage";
 
 interface AppProps {
   init: (navigate: NavigateFunction) => void;
@@ -58,6 +59,11 @@ const App = (props: AppProps) => {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/profile-page" element={<ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>}/>
+      
       </Routes>
     </>
   );

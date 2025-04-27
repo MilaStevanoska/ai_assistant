@@ -10,7 +10,7 @@ async function signIn(model: LoginModel): Promise<DataServiceResponse> {
 }
 
 async function register(model: RegisterModel): Promise<DataServiceResponse> {
-  return http.post('/signin', model);
+  return http.post('/register', model);
 }
 
 async function signOut(): Promise<DataServiceResponse<UserModel>> {
